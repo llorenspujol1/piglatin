@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AlertModule } from 'ngx-bootstrap';
+import {TranslatorModule} from "../translator/translator.module";
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { AlertModule } from 'ngx-bootstrap';
   ],
   imports: [
     BrowserModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    TranslatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

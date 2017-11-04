@@ -1,0 +1,8 @@
+.translator-container {
+  display: flex;
+  justify-content: center;
+
+  app-translator-input {
+    margin: 0 16px;
+  }
+}
