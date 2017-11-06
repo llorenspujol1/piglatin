@@ -1,5 +1,5 @@
 <div class="translator-container">
-  <app-translator-input [label]="'English'" (inputChange)="translate($event)"></app-translator-input>
-  <app-translator-input [label]="'PigLatin'" (inputChange)="translate($event)"></app-translator-input>
+  <app-translator-input [text]="translatorModel.getProperty('text') | async" [label]="'English'" (inputChange)="translate($event)"></app-translator-input>
+  <app-translator-input [text]="translatedText | async" [readonly]="true" [label]="'PigLatin'"></app-translator-input>
 </div>
 

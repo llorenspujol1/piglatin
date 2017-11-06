@@ -1,4 +1,4 @@
 <div class="form-group">
   <label [for]="uid">{{label}}:</label>
-  <textarea #translatorInput class="form-control" rows="5" [id]="uid"></textarea>
+  <textarea #translatorInput [(ngModel)]="text" [readonly]="readonly" class="form-control" rows="5" [id]="uid"></textarea>
 </div>

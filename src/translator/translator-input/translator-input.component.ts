@@ -17,6 +17,10 @@ export class TranslatorInputComponent implements OnInit {
   @ViewChild('translatorInput') translatorInput: ElementRef;
   /** Label of the textarea */
   @Input() label: string;
+  /** Text input of the text area. Caution with this Input, because inputs have state so always have to be coehrent with this input */
+  @Input() text: string;
+  /** Readonly property */
+  @Input() readonly: boolean;
   /** Output event emitter for input changes */
   @Output() inputChange: EventEmitter<string> = new EventEmitter<string>();
   constructor() {
@@ -29,5 +33,9 @@ export class TranslatorInputComponent implements OnInit {
       .subscribe(value => {
         this.inputChange.next(value);
       });
+  }
+
+  ngDoCheck() {
+    console.log(this.text);
   }
 }
