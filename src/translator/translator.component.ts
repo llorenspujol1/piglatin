@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Language, TranslatorService} from './translator.service';
 import {TranslatorModel, TranslatorState} from './translator.model';
 import {Observable} from 'rxjs/Observable';
-import {deepCopy} from "../core/utils";
 
 @Component({
   selector: 'app-translator',

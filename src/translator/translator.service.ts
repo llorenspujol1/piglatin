@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {translateEnToPg, translatePgToEn} from './translators/piglatin-english.translator';
+import {translateEnPg, translatePgToEn} from './translators/piglatin-english.translator';
 
 export type Language = 'en' | 'pg';
 
@@ -30,7 +30,7 @@ export class TranslatorService {
     if (originLang === destinationLang) {
       return value;
     } else if (originLang === 'en') {
-      return translateEnToPg(value);
+      return translateEnPg(value);
     } else if (originLang === 'pg') {
       return translatePgToEn(value);
     }
