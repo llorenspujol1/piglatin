@@ -6,6 +6,10 @@ export function translateEnToPg(text: string): string {
   return textTranslatedArray.join(' ');
 }
 
+export function translatePgToEn(text: string): string {
+  return text;
+}
+
 
 export function translateWordEnToPg(word: string): string {
   let first = '';

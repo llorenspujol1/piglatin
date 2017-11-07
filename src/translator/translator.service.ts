@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {translateEnToPg} from './translators/piglatin-english.translator';
+import {translateEnToPg, translatePgToEn} from './translators/piglatin-english.translator';
 
 export type Language = 'en' | 'pg';
 
@@ -9,23 +9,31 @@ export interface TranslatorConfig {
 
 @Injectable()
 export class TranslatorService {
-  private availableLanguages: Language[];
+  private _availableLanguages: Language[];
+  get availableLanguages() { return this._availableLanguages; }
 
   constructor(private config: TranslatorConfig) {
-    this.availableLanguages = [...this.config.languages];
+    this._availableLanguages = [...this.config.languages];
   }
 
   translate(value: string, originLang: Language, destinationLang: Language): string {
-    if (!isAvailableLanguage(this.availableLanguages, originLang)) {
+    // check possible language incompatibilities
+    if (!isAvailableLanguage(this._availableLanguages, originLang)) {
       console.error(`Language ${originLang} is not an available language`);
       return '';
     }
-    if (!isAvailableLanguage(this.availableLanguages, destinationLang)) {
+    if (!isAvailableLanguage(this._availableLanguages, destinationLang)) {
       console.error(`Language ${destinationLang} is not an available language`);
       return '';
     }
-
-    return translateEnToPg(value);
+    // calculate result.
+    if (originLang === destinationLang) {
+      return value;
+    } else if (originLang === 'en') {
+      return translateEnToPg(value);
+    } else if (originLang === 'pg') {
+      return translatePgToEn(value);
+    }
   }
 }
 

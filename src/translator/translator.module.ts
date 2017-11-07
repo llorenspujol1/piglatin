@@ -4,13 +4,14 @@ import {TranslatorInputComponent} from './translator-input/translator-input.comp
 import {TranslatorConfig, TranslatorService} from './translator.service';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {SelectorComponentModule} from '../shared/selector/selector.module';
 
 export const translatorServiceFactory = () => {
   return new TranslatorService({languages: ['en', 'pg']} as TranslatorConfig);
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SelectorComponentModule],
   exports: [TranslatorComponent],
   declarations: [TranslatorComponent, TranslatorInputComponent],
   providers: [

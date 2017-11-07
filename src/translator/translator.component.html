@@ -1,5 +1,32 @@
 <div class="translator-container">
-  <app-translator-input [text]="translatorModel.getProperty('text') | async" [label]="'English'" (inputChange)="translate($event)"></app-translator-input>
-  <app-translator-input [text]="translatedText | async" [readonly]="true" [label]="'PigLatin'"></app-translator-input>
+  <div>
+    <app-selector
+      [label]="'Select Language'"
+      [listItems]="translationService.availableLanguages"
+      [selectedItem]="translatorModel.getProperty('fromLang') | async"
+      (itemClicked)="changeLanguage('fromLang', $event)"
+    ></app-selector>
+    <app-translator-input
+      [text]="translatorModel.getProperty('text') | async"
+      [label]="translatorModel.getProperty('fromLang') | async"
+      (inputChange)="translate($event)">
+    </app-translator-input>
+  </div>
+  <button type="button" class="btn btn-default" (click)="swapLanguages()">
+    <span class="glyphicon glyphicon-transfer"></span>
+  </button>
+  <div>
+    <app-selector
+      [label]="'Select Language'"
+      [listItems]="translationService.availableLanguages"
+      [selectedItem]="translatorModel.getProperty('toLang') | async"
+      (itemClicked)="changeLanguage('toLang', $event)"
+    ></app-selector>
+    <app-translator-input
+      [text]="translatedText | async"
+      [label]="translatorModel.getProperty('toLang') | async"
+      [readonly]="true">
+    </app-translator-input>
+  </div>
 </div>
 
