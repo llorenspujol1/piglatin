@@ -16,6 +16,9 @@ export function translateTextWords(text: string, callbackfn: (value: string) => 
  * @returns {string}
  */
 export function translateWordPgToEn(word: string): string {
+  // if word is length === 0 or null return empty string,
+  if (!word) { return ''; }
+
   let first = '';
   let second = '';
   const last = 'ay';
@@ -35,6 +38,9 @@ export function translateWordPgToEn(word: string): string {
  * @returns {string}
  */
 export function translateWordEnToPg(word) {
+  // if word is length === 0 or null return empty string,
+  if (!word) { return ''; }
+
   let first = '';
   let second = '';
   const last = 'ay';

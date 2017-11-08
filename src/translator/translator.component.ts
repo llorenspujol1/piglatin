@@ -10,32 +10,48 @@ import {Observable} from 'rxjs/Observable';
   providers: [TranslatorModel]
 })
 
-export class TranslatorComponent implements OnInit {
-  translatedText: Observable<string>;
+export class TranslatorComponent {
+  /** Observable<string> containing the translated text */
+  translatedText$: Observable<string>;
+
+  /** constructor function */
   constructor(public translationService: TranslatorService, public translatorModel: TranslatorModel) {
-    this.translatedText = translatorModel.model$.map((state: TranslatorState) => {
-      console.log('model new state', state);
+    this.translatedText$ = translatorModel.model$.map((state: TranslatorState) => {
       return this.translationService.translate(state.text, state.fromLang, state.toLang);
     });
   }
 
-  ngOnInit() {
-  }
-
-  translate(value: string) {
+  /**
+   * Updates the model with a new value of the input text
+   * @param value
+   */
+  updateInputText(value: string) {
     this.translatorModel.updateProperty('text', value);
   }
 
+  /**
+   * Changes the language on the model
+   * @param prop
+   * @param language
+   */
   changeLanguage(prop: string, language: Language) {
     this.translatorModel.updateProperty(prop, language);
   }
 
+  /**
+   * Fired when swap language button is clicked. Uses the reducer function in order to calculate the new state
+   */
   swapLanguages() {
     const newState = swapLanguagesReducer(this.translatorModel.getCurrentValue())
     this.translatorModel.update(newState);
   }
 }
 
+/**
+ * Reducer function that switches the languages and returns the new computed state
+ * @param state
+ * @returns {TranslatorState}
+ */
 const swapLanguagesReducer = (state: TranslatorState): TranslatorState => {
   const newState: TranslatorState = {
     fromLang: state.toLang,

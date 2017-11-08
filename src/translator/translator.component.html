@@ -9,7 +9,7 @@
     <app-translator-input
       [text]="translatorModel.getProperty('text') | async"
       [label]="translatorModel.getProperty('fromLang') | async"
-      (inputChange)="translate($event)">
+      (inputChange)="updateInputText($event)">
     </app-translator-input>
   </div>
   <button type="button" class="btn btn-default" (click)="swapLanguages()">
@@ -23,7 +23,7 @@
       (itemClicked)="changeLanguage('toLang', $event)"
     ></app-selector>
     <app-translator-input
-      [text]="translatedText | async"
+      [text]="translatedText$ | async"
       [label]="translatorModel.getProperty('toLang') | async"
       [readonly]="true">
     </app-translator-input>

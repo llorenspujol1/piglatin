@@ -11,6 +11,7 @@ describe('Pig Latin - English Translator', () => {
 
 
 const translations = [
+  {en: '', pg: ''},
   {en: 'mess', pg: 'essmay'},
   {en: 'father', pg: 'atherfay'},
   {en: 'chick', pg: 'ickchay'},

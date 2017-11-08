@@ -5,7 +5,7 @@ import {Language} from './translator.service';
 const initialState: TranslatorState = {
   fromLang: 'en',
   toLang: 'pg',
-  text: 'This is the PigLatin translator'
+  text: 'this is the piglatin translator'
 };
 
 export interface TranslatorState {
