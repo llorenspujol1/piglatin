@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
-import {translateEnPg, translatePgToEn} from './translators/piglatin-english.translator';
+import {
+  translateWordPgToEn, translateTextWords,
+  translateWordEnToPg
+} from './translators/piglatin-english.translator';
 
 export type Language = 'en' | 'pg';
 
@@ -26,13 +29,13 @@ export class TranslatorService {
       console.error(`Language ${destinationLang} is not an available language`);
       return '';
     }
-    // calculate result.
+    // calculate result
     if (originLang === destinationLang) {
       return value;
     } else if (originLang === 'en') {
-      return translateEnPg(value);
+      return translateTextWords(value, translateWordEnToPg);
     } else if (originLang === 'pg') {
-      return translatePgToEn(value);
+      return translateTextWords(value, translateWordPgToEn);
     }
   }
 }

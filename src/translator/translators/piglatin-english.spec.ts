@@ -20,5 +20,9 @@ const translations = [
   {en: 'queen', pg: 'eenquay'},
   {en: 'choir', pg: 'oirchay'},
   {en: 'ant', pg: 'antay'},
-  {en: 'honor', pg: 'honoray'},
+  {en: 'honor', pg: 'onorhay'},
+  {en: 'question', pg: 'estionquay'},
+  {en: 'three', pg: 'eethray'},
+  {en: 'happy', pg: 'appyhay'},
+  {en: 'dough', pg: 'oughday'},
 ];
