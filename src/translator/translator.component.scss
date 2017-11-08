@@ -1,5 +1,6 @@
 .translator-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -8,6 +9,15 @@
   }
 
   & > div {
-    margin: 0 16px;
+    margin: 16px;
+    flex: 1;
+    max-width: 250px;
+
+  }
+}
+
+@media (min-width: 400px) {
+  .translator-container {
+    flex-direction: row;
   }
 }

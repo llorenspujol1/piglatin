@@ -1,7 +1,7 @@
 <div class="translator-container">
   <div>
     <app-selector
-      [label]="'Select Language'"
+      [label]="'From Language'"
       [listItems]="translationService.availableLanguages"
       [selectedItem]="translatorModel.getProperty('fromLang') | async"
       (itemClicked)="changeLanguage('fromLang', $event)"
@@ -17,7 +17,7 @@
   </button>
   <div>
     <app-selector
-      [label]="'Select Language'"
+      [label]="'To Language'"
       [listItems]="translationService.availableLanguages"
       [selectedItem]="translatorModel.getProperty('toLang') | async"
       (itemClicked)="changeLanguage('toLang', $event)"

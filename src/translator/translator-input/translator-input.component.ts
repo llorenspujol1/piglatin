@@ -1,5 +1,6 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
+import {Subscription} from "rxjs/Subscription";
 
 // Unique id for translator inputs
 let nextUniqueId = 0;
@@ -11,7 +12,8 @@ let nextUniqueId = 0;
   styleUrls: ['translator-input.component.scss']
 })
 
-export class TranslatorInputComponent implements OnInit {
+export class TranslatorInputComponent implements OnInit, OnDestroy {
+  private _sub: Subscription;
   private _uid = `translator-input-${nextUniqueId++}`;
   get uid() { return this._uid; }
   @ViewChild('translatorInput') translatorInput: ElementRef;
@@ -23,11 +25,12 @@ export class TranslatorInputComponent implements OnInit {
   @Input() readonly: boolean;
   /** Output event emitter for input changes */
   @Output() inputChange: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() {
   }
 
   ngOnInit() {
-    Observable.fromEvent(this.translatorInput.nativeElement, 'input')
+    this._sub = Observable.fromEvent(this.translatorInput.nativeElement, 'input')
       .debounceTime(600)
       .map((keyboardEvent: any) => keyboardEvent.target.value)
       .subscribe(value => {
@@ -35,7 +38,7 @@ export class TranslatorInputComponent implements OnInit {
       });
   }
 
-  ngDoCheck() {
-    console.log(this.text);
+  ngOnDestroy() {
+    this._sub.unsubscribe();
   }
 }
